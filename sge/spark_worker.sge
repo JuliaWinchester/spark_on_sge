@@ -13,4 +13,5 @@
 #	- NUM_CORES: Number of cores for Spark worker node (1)
 #	- MEM: Memory for Spark worker node (1G)
 
-$SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$SPARK_MASTER_HOST:$SPARK_MASTER_PORT -c $NUM_CORES -m $MEM
+$SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker \
+	spark://$SPARK_MASTER_HOST:$SPARK_MASTER_PORT -c $NUM_CORES -m $MEM

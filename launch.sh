@@ -11,7 +11,7 @@
 
 function check_free_port () {
 	if [[ $(netstat -lnt | awk '$6 == "LISTEN" && $4 ~ ".{$MASTER_PORT}"') ]]; then
-		MASTER_PORT = "shuf -i 7001-7099 -n 1"
+		SPARK_MASTER_PORT = "shuf -i 7001-7099 -n 1"
 		check_free_port
 	else
 		return
@@ -25,11 +25,23 @@ SPARK_MASTER_HOST = $(hostname -i)
 SPARK_MASTER_PORT = $(shuf -i 7001-7099 -n 1)
 check_free_port
 
+echo $SPARK_MASTER_HOST
+echo $SPARK_MASTER_PORT
+echo $NUM_QSUB_JOBS
+echo $SPARK_HOME
+echo $SPARK_DRIVER_MEMORY
+echo $SPARK_WORKER_CORES
+echo $SPARK_WORKER_MEMORY
+
 . "${SPARK_HOME}/sbin/start-master.sh"
 
 for i in $(seq 1 $NUM_QSUB_JOBS)
 do
-	command
+	qsub -v SPARK_HOME=/home/collabor/jwinch/spark/ \
+		-v SPARK_MASTER_HOST=$SPARK_MASTER_HOST \
+		-v SPARK_MASTER_PORT=$SPARK_MASTER_PORT \
+		-v NUM_CORES=$SPARK_WORKER_CORES -v MEM=$SPARK_WORKER_MEMORY \
+		./sge/spark_worker.sge
 done
 
 
