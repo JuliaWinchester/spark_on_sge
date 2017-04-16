@@ -21,8 +21,8 @@ function check_free_port () {
 . "conf/sge.sh"
 . "conf/spark-env.sh"
 
-SPARK_MASTER_HOST = $(hostname -i)
-SPARK_MASTER_PORT = $(shuf -i 7001-7099 -n 1)
+SPARK_MASTER_HOST=$(hostname -i)
+SPARK_MASTER_PORT=$(shuf -i 7001-7099 -n 1)
 check_free_port
 
 echo $SPARK_MASTER_HOST
