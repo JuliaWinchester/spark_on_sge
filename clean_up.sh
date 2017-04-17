@@ -9,7 +9,7 @@
 . "conf/sge.sh"
 . "conf/spark-env.sh"
 
-$SPARK_HOME/sbin/stop-master.sh
+#$SPARK_HOME/sbin/stop-master.sh
 
 qdel sp_wrkr
 
