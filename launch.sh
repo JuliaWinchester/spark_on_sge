@@ -7,7 +7,9 @@
 # script should generally not be run on its own as it does not include any
 # ability to exit launched spark processes. Instead, the script spark_run.sh
 # should be run, since it automates spark environment launch, spark application
-# submission, and spark process/qsub job clean-up.
+# submission, and spark process/qsub job clean-up. Nonetheless, after launch.sh
+# is run it is necessary to run clean_up.sh or else Spark processes will not 
+# close. As noted, spark_run.sh automates this. 
 
 function check_free_port () {
 	if [[ $(netstat -lnt | awk '$6 == "LISTEN" && $4 ~ ".{$MASTER_PORT}"') ]]; then
@@ -25,15 +27,7 @@ SPARK_MASTER_HOST=$(hostname -i)
 SPARK_MASTER_PORT=$(shuf -i 7001-7099 -n 1)
 check_free_port
 
-echo $SPARK_MASTER_HOST
-echo $SPARK_MASTER_PORT
-echo $NUM_QSUB_JOBS
-echo $SPARK_HOME
-echo $SPARK_DRIVER_MEMORY
-echo $SPARK_WORKER_CORES
-echo $SPARK_WORKER_MEMORY
-
-. "${SPARK_HOME}/sbin/start-master.sh"
+$SPARK_HOME/sbin/start-master.sh
 
 for i in $(seq 1 $NUM_QSUB_JOBS)
 do

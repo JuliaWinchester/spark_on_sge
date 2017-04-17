@@ -11,5 +11,5 @@
 export SPARK_HOME="/home/collabor/jwinch/spark/"
 export SPARK_DRIVER_MEMORY="40G"
 export SPARK_WORKER_CORES=1
-export SPARK_WORKER_MEMORY=1
+export SPARK_WORKER_MEMORY=1G
 
