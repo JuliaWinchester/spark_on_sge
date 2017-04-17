@@ -27,7 +27,8 @@ SPARK_MASTER_HOST=$(hostname -i)
 SPARK_MASTER_PORT=$(shuf -i 7001-7099 -n 1)
 check_free_port
 
-$SPARK_HOME/sbin/start-master.sh
+$SPARK_HOME/sbin/start-daemon.sh start org.apache.spark.deploy.master.Master 1 \
+	--host $SPARK_MASTER_HOST --port $SPARK_MASTER_PORT
 
 for i in $(seq 1 $NUM_QSUB_JOBS)
 do
