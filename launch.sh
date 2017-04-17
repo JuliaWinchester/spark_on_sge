@@ -23,6 +23,10 @@ function check_free_port () {
 . "conf/sge.sh"
 . "conf/spark-env.sh"
 
+# Delete logs from previous run
+rm -rf ./sge/log/*.txt
+rm -rf ./sge/log/webui
+
 SPARK_MASTER_HOST=$(hostname -i)
 SPARK_MASTER_PORT=$(shuf -i 7001-7099 -n 1)
 check_free_port

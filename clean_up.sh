@@ -9,8 +9,9 @@
 . "conf/sge.sh"
 . "conf/spark-env.sh"
 
-#$SPARK_HOME/sbin/stop-master.sh
+wget -m -P ./sge/log/webui/ "localhost:8080"
+
+$SPARK_HOME/sbin/stop-master.sh
 
 qdel sp_wrkr
 
-rm -rf ./sge/log/*.txt
