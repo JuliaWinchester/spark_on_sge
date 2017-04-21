@@ -9,7 +9,7 @@
 . "conf/sge.sh"
 . "conf/spark-env.sh"
 
-wget -m -P ./sge/log/webui/ "localhost:8080"
+wget -m -P $LOG_DIR/webui/ "localhost:8080"
 
 $SPARK_HOME/sbin/stop-master.sh
 

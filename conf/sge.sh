@@ -8,3 +8,4 @@
 # uptime or required memory amounts for qsub jobs running spark workers. 
 
 export NUM_QSUB_JOBS=100
+export LOG_DIR="./sge/log/"
