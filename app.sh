@@ -13,4 +13,4 @@ $SPARK_HOME/bin/spark-submit \
 	--master spark://$SPARK_MASTER_HOST:$SPARK_MASTER_PORT \
 	--deploy-mode client \
 	--driver-memory $SPARK_DRIVER_MEMORY \
-	$1
+	"$@"

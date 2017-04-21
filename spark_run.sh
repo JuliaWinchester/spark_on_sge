@@ -8,7 +8,7 @@
 
 . "launch.sh"
 
-. "app.sh" $1
+. "app.sh" "$@"
 
 . "clean_up.sh"
 
